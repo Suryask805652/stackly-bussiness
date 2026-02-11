@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | 404 Error - StackLy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --error-primary: #7c3aed;
+            --error-primary-dark: #6d28d9;
+            --error-secondary: #f56565;
+            --error-accent: #ed8936;
+            --error-dark: #1e293b;
+            --error-light: #f8fafc;
+            --error-gray: #64748b;
+            --error-white: #ffffff;
+            --error-shadow: 0 10px 25px rgba(124, 58, 237, 0.1);
+            --error-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--error-dark);
+            background-color: var(--error-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .error-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==================== */
+        /* ERROR NAVIGATION - Different from main page */
+        /* ==================== */
+        .error-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--error-transition);
+        }
+
+        .error-header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .error-header .error-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .error-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--error-dark);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .error-logo .error-highlight {
+            background: linear-gradient(135deg, var(--error-dark), var(--error-primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Error Mobile Menu Button */
+        .error-menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--error-primary), var(--error-accent));
+            color: var(--error-white);
+            border: none;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            transition: var(--error-transition);
+            z-index: 1001;
+        }
+
+        .error-menu-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+        }
+
+        .error-menu-toggle.active {
+            background: var(--error-dark);
+        }
+
+        /* Error Mobile Menu Overlay */
+        .error-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .error-menu-overlay.active {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Error Desktop Navigation */
+        .error-navigation {
+            display: flex;
+            list-style: none;
+        }
+
+        .error-navigation li {
+            margin-left: 30px;
+        }
+
+        .error-navigation a {
+            text-decoration: none;
+            color: var(--error-dark);
+            font-weight: 600;
+            transition: var(--error-transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .error-navigation a:hover {
+            color: var(--error-primary);
+        }
+
+        .error-navigation a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--error-primary), var(--error-accent));
+            transition: var(--error-transition);
+        }
+
+        .error-navigation a:hover::after {
+            width: 100%;
+        }
+
+        /* ==================== */
+        /* 404 CONTENT */
+        /* ==================== */
+        .error-page-section {
+            min-height: 100vh;
+            padding: 180px 0 100px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-page-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .error-code {
+            font-size: 15rem;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--error-primary), var(--error-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 5px 5px 20px rgba(124, 58, 237, 0.1);
+        }
+
+        .error-heading {
+            font-size: 3rem;
+            color: var(--error-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .error-heading .error-gradient {
+            background: linear-gradient(135deg, var(--error-secondary), var(--error-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .error-text {
+            font-size: 1.2rem;
+            color: var(--error-gray);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .error-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+
+        .error-btn {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--error-transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-btn-primary {
+            background: linear-gradient(135deg, var(--error-primary), var(--error-accent));
+            color: var(--error-white);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
+        }
+
+        .error-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+        }
+
+        .error-btn-secondary {
+            background-color: transparent;
+            color: var(--error-primary);
+            border: 2px solid var(--error-primary);
+        }
+
+        .error-btn-secondary:hover {
+            background-color: var(--error-primary);
+            color: var(--error-white);
+            transform: translateY(-3px);
+        }
+
+        /* Error Search Section */
+        .error-search-container {
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .error-search-box {
+            display: flex;
+            background: var(--error-white);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: var(--error-shadow);
+            padding: 5px;
+        }
+
+        .error-search-box input {
+            flex: 1;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+        }
+
+        .error-search-box button {
+            background: linear-gradient(135deg, var(--error-primary), var(--error-accent));
+            color: var(--error-white);
+            border: none;
+            padding: 0 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--error-transition);
+        }
+
+        .error-search-box button:hover {
+            background: linear-gradient(135deg, var(--error-primary-dark), var(--error-accent));
+        }
+
+        /* Error Link Cards */
+        .error-suggestions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 4rem;
+        }
+
+        .error-suggestion-card {
+            background-color: var(--error-white);
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: var(--error-shadow);
+            transition: var(--error-transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-suggestion-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, var(--error-primary), var(--error-accent));
+        }
+
+        .error-suggestion-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .error-card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--error-primary), var(--error-accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--error-white);
+            font-size: 2rem;
+        }
+
+        .error-suggestion-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--error-dark);
+        }
+
+        .error-suggestion-card p {
+            color: var(--error-gray);
+            margin-bottom: 25px;
+        }
+
+        /* Error Background Animation */
+        .error-page-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .error-bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(59, 130, 246, 0.1));
+            animation: error-float 20s infinite ease-in-out;
+        }
+
+        @keyframes error-float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+            }
+        }
+
+        /* Error Animation Classes */
+        .error-fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .error-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .error-delay-1 {
+            transition-delay: 0.2s;
+        }
+
+        .error-delay-2 {
+            transition-delay: 0.4s;
+        }
+
+        .error-delay-3 {
+            transition-delay: 0.6s;
+        }
+
+        /* ==================== */
+        /* RESPONSIVE DESIGN */
+        /* ==================== */
+
+        /* Tablet and Smaller Desktop */
+        @media (max-width: 992px) {
+            .error-code {
+                font-size: 12rem;
+            }
+
+            .error-heading {
+                font-size: 2.5rem;
+            }
+
+            .error-suggestions {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .error-navigation li {
+                margin-left: 20px;
+            }
+        }
+
+        /* Mobile Devices */
+        @media (max-width: 768px) {
+            /* Error Mobile Menu Styles */
+            .error-menu-toggle {
+                display: flex;
+            }
+
+            .error-navigation {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 85%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--error-light);
+                padding: 80px 0 30px;
+                margin: 0;
+                list-style: none;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .error-navigation.active {
+                left: 0;
+            }
+
+            .error-navigation li {
+                border-bottom: 1px solid #e2e8f0;
+                opacity: 0;
+                transform: translateX(-20px);
+                transition: all 0.3s ease;
+                margin: 0;
+                width: 100%;
+            }
+
+            .error-navigation.active li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            /* Staggered animation for menu items */
+            .error-navigation.active li:nth-child(1) { transition-delay: 0.1s; }
+            .error-navigation.active li:nth-child(2) { transition-delay: 0.15s; }
+            .error-navigation.active li:nth-child(3) { transition-delay: 0.2s; }
+            .error-navigation.active li:nth-child(4) { transition-delay: 0.25s; }
+            .error-navigation.active li:nth-child(5) { transition-delay: 0.3s; }
+
+            .error-navigation a {
+                display: flex;
+                align-items: center;
+                padding: 18px 25px;
+                color: var(--error-dark);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 1.1rem;
+                transition: var(--error-transition);
+                position: relative;
+                width: 100%;
+            }
+
+            .error-navigation a:hover {
+                background: linear-gradient(90deg, rgba(124, 58, 237, 0.1), transparent);
+                color: var(--error-primary);
+                padding-left: 30px;
+            }
+
+            /* Error Mobile Navigation Styles */
+            .error-header {
+                padding: 12px 0;
+            }
+            
+            .error-header .error-wrapper {
+                padding: 0 15px;
+            }
+            
+            .error-logo {
+                font-size: 1.6rem;
+            }
+            
+            /* Error Mobile 404 Content */
+            .error-page-section {
+                padding: 140px 0 60px;
+            }
+            
+            .error-page-content {
+                text-align: center;
+            }
+            
+            .error-code {
+                font-size: 8rem;
+            }
+            
+            .error-heading {
+                font-size: 2rem;
+            }
+            
+            .error-text {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .error-buttons {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .error-btn {
+                width: 100%;
+                max-width: 280px;
+                padding: 14px 28px;
+            }
+            
+            .error-search-container {
+                margin-bottom: 3rem;
+            }
+            
+            .error-search-box {
+                flex-direction: column;
+                border-radius: 15px;
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .error-search-box input {
+                padding: 12px 20px;
+                border: 1px solid #e2e8f0;
+                border-radius: 10px;
+            }
+            
+            .error-search-box button {
+                padding: 12px 20px;
+                border-radius: 10px;
+            }
+            
+            .error-suggestions {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .error-suggestion-card {
+                padding: 30px 20px;
+            }
+            
+            .error-card-icon {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 20px;
+            }
+            
+            /* Hide Background Animation on Mobile for Performance */
+            .error-page-bg {
+                display: none;
+            }
+        }
+
+        /* Small Mobile Devices (Portrait) */
+        @media (max-width: 576px) {
+            .error-page-section {
+                padding: 120px 0 40px;
+            }
+            
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-heading {
+                font-size: 1.8rem;
+            }
+            
+            .error-text {
+                font-size: 1rem;
+            }
+            
+            .error-suggestion-card {
+                padding: 25px 15px;
+            }
+            
+            .error-card-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .error-suggestion-card h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Extra Small Mobile Devices */
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 5rem;
+            }
+            
+            .error-heading {
+                font-size: 1.5rem;
+            }
+            
+            .error-search-box {
+                padding: 12px;
+            }
+            
+            .error-search-box input {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .error-search-box button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Tablet Devices (768px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .error-wrapper {
+                padding: 0 30px;
+            }
+            
+            .error-code {
+                font-size: 10rem;
+            }
+            
+            .error-heading {
+                font-size: 2.2rem;
+            }
+            
+            .error-suggestions {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .error-page-section {
+                min-height: auto;
+                padding: 100px 0 50px;
+            }
+            
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-heading {
+                font-size: 1.8rem;
+            }
+            
+            .error-navigation {
+                padding: 60px 20px 20px;
+            }
+            
+            .error-navigation a {
+                padding: 12px 20px;
+            }
+        }
+
+        /* High-DPI Mobile Devices */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .error-btn,
+            .error-menu-toggle,
+            .error-card-icon {
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            .error-menu-toggle,
+            .error-navigation a {
+                -webkit-tap-highlight-color: rgba(124, 58, 237, 0.1);
+            }
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --error-dark: #f8fafc;
+                --error-light: #0f172a;
+                --error-gray: #cbd5e1;
+            }
+            
+            body {
+                background-color: #0f172a;
+            }
+            
+            .error-header {
+                background-color: rgba(15, 23, 42, 0.95);
+            }
+            
+            .error-logo {
+                color: var(--error-dark);
+            }
+            
+            .error-navigation a {
+                color: var(--error-dark);
+            }
+            
+            .error-page-section {
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            }
+            
+            .error-heading {
+                color: var(--error-dark);
+            }
+            
+            .error-search-box {
+                background: #1e293b;
+            }
+            
+            .error-search-box input {
+                background: #1e293b;
+                color: var(--error-dark);
+                border-color: #334155;
+            }
+            
+            .error-suggestion-card {
+                background-color: #1e293b;
+            }
+            
+            .error-suggestion-card h3 {
+                color: var(--error-dark);
+            }
+            
+            .error-suggestion-card p {
+                color: var(--error-gray);
+            }
+        }
+
+        /* Reduce Motion for Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .error-bg-element,
+            .error-suggestion-card,
+            .error-btn {
+                animation: none !important;
+            }
+            
+            .error-navigation,
+            .error-navigation li,
+            .error-navigation a,
+            .error-menu-overlay {
+                transition: none !important;
+                animation: none !important;
+            }
+            
+            .error-navigation.active li {
+                opacity: 1;
+                transform: none;
+            }
+            
+            .error-fade-up {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Error Navigation - Different from main page -->
+    <header class="error-header" id="errorHeader">
+        <div class="error-wrapper">
+            <a href="index.html" class="error-logo">Stack<span class="error-highlight">Ly</span></a>
+            
+            <button class="error-menu-toggle" id="errorMenuToggle" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Error Mobile Menu Overlay -->
+            <div class="error-menu-overlay" id="errorMenuOverlay"></div>
+            
+            <!-- Error Navigation Links -->
+            <ul class="error-navigation" id="errorNavigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="404.html">Services</a></li>
+                <li><a href="404.html">Solutions</a></li>
+                <li><a href="404.html">About</a></li>
+                <li><a href="404.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 404 Content Section -->
+    <main class="error-page-section">
+        <!-- Error Background Animation -->
+        <div class="error-page-bg" id="errorPageBg"></div>
+        
+        <div class="error-wrapper">
+            <div class="error-page-content">
+                <h1 class="error-code error-fade-up">404</h1>
+                <h2 class="error-heading error-fade-up error-delay-1">
+                    Oops! Page <span class="error-gradient">Not Found</span>
+                </h2>
+                <p class="error-text error-fade-up error-delay-2">
+                    The page you're looking for seems to have disappeared into the digital void. 
+                    Don't worry though - we'll help you find your way back to where you need to be.
+                </p>
+                
+                <div class="error-buttons error-fade-up error-delay-2">
+                    <a href="index.html" class="error-btn error-btn-primary">
+                        <i class="fas fa-home"></i> Back to Home
+                    </a>
+                    <a href="404.html" class="error-btn error-btn-secondary">
+                        <i class="fas fa-headset"></i> Contact Support
+                    </a>
+                </div>
+
+                <div class="error-search-container error-fade-up error-delay-3">
+                    <p style="margin-bottom: 1rem; color: var(--error-gray); font-size: 1.1rem; text-align: center;">
+                        Can't find what you're looking for? Search our site:
+                    </p>
+                    <div class="error-search-box">
+                        <input type="text" placeholder="What are you looking for?" id="errorSearchInput" aria-label="Search input">
+                        <button id="errorSearchBtn" aria-label="Search">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+
+                <div class="error-suggestions">
+                    <div class="error-suggestion-card error-fade-up">
+                        <div class="error-card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Business Strategy</h3>
+                        <p>Discover our comprehensive business strategy and planning services to drive your growth.</p>
+                        <a href="404.html" class="error-btn error-btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">Explore Services</a>
+                    </div>
+                    
+                    <div class="error-suggestion-card error-fade-up error-delay-1">
+                        <div class="error-card-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Digital Solutions</h3>
+                        <p>Transform your operations with our cutting-edge digital solutions and technology services.</p>
+                        <a href="404.html" class="error-btn error-btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">View Solutions</a>
+                    </div>
+                    
+                    <div class="error-suggestion-card error-fade-up error-delay-2">
+                        <div class="error-card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Expert Support</h3>
+                        <p>Connect with our team of experts for personalized guidance and support.</p>
+                        <a href="404.html" class="error-btn error-btn-secondary" style="padding: 10px 24px; font-size: 0.9rem;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Error Mobile Menu Functionality
+        function initErrorNavigation() {
+            const menuToggle = document.getElementById('errorMenuToggle');
+            const errorNav = document.getElementById('errorNavigation');
+            const menuOverlay = document.getElementById('errorMenuOverlay');
+            const body = document.body;
+            
+            if (!menuToggle || !errorNav || !menuOverlay) {
+                console.error('Error menu elements not found!');
+                return;
+            }
+            
+            let isErrorMenuOpen = false;
+            
+            function toggleErrorMenu() {
+                isErrorMenuOpen = !isErrorMenuOpen;
+                
+                menuToggle.setAttribute('aria-expanded', isErrorMenuOpen);
+                menuToggle.classList.toggle('active');
+                
+                errorNav.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+                body.classList.toggle('menu-open');
+                
+                const icon = menuToggle.querySelector('i');
+                if (isErrorMenuOpen) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+                
+                // Focus management for accessibility
+                if (isErrorMenuOpen) {
+                    const firstMenuItem = errorNav.querySelector('a');
+                    if (firstMenuItem) {
+                        setTimeout(() => firstMenuItem.focus(), 100);
+                    }
+                } else {
+                    menuToggle.focus();
+                }
+            }
+            
+            function closeErrorMenu() {
+                if (isErrorMenuOpen) {
+                    isErrorMenuOpen = false;
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    errorNav.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    
+                    menuToggle.focus();
+                }
+            }
+            
+            // Event Listeners
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleErrorMenu();
+            });
+            
+            // Close menu when clicking overlay
+            menuOverlay.addEventListener('click', closeErrorMenu);
+            
+            // Close menu when clicking a link
+            document.querySelectorAll('.error-navigation a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth < 768) {
+                        closeErrorMenu();
+                    }
+                });
+            });
+            
+            // Close menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && isErrorMenuOpen) {
+                    closeErrorMenu();
+                }
+            });
+            
+            // Close menu when clicking outside on mobile
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth < 768 && isErrorMenuOpen) {
+                    const isClickInsideMenu = errorNav.contains(e.target) || menuToggle.contains(e.target);
+                    
+                    if (!isClickInsideMenu) {
+                        closeErrorMenu();
+                    }
+                }
+            });
+            
+            // Handle window resize
+            function handleResize() {
+                if (window.innerWidth >= 768 && isErrorMenuOpen) {
+                    closeErrorMenu();
+                }
+                
+                // Update menu items animation delays
+                const menuItems = document.querySelectorAll('.error-navigation li');
+                menuItems.forEach((item, index) => {
+                    item.style.setProperty('--i', index);
+                });
+            }
+            
+            window.addEventListener('resize', handleResize);
+            handleResize(); // Initialize
+        }
+
+        // Error Background Animation
+        function createErrorBackground() {
+            const background = document.getElementById('errorPageBg');
+            if (!background) return;
+            
+            // Create background elements
+            const elementCount = 15;
+            for (let i = 0; i < elementCount; i++) {
+                const element = document.createElement('div');
+                element.classList.add('error-bg-element');
+                
+                const size = Math.random() * 100 + 20;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100}%`;
+                
+                element.style.animationDelay = `${Math.random() * 20}s`;
+                element.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                background.appendChild(element);
+            }
+        }
+
+        // Error Scroll Animation
+        function checkErrorAnimations() {
+            const elements = document.querySelectorAll('.error-fade-up');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Error Navbar scroll effect
+        function handleErrorHeaderScroll() {
+            const errorHeader = document.getElementById('errorHeader');
+            if (window.scrollY > 50) {
+                errorHeader.classList.add('scrolled');
+            } else {
+                errorHeader.classList.remove('scrolled');
+            }
+        }
+
+        // Error Search Functionality
+        function initErrorSearch() {
+            const searchInput = document.getElementById('errorSearchInput');
+            const searchBtn = document.getElementById('errorSearchBtn');
+            
+            function handleErrorSearch() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    // Show loading state
+                    const originalText = searchBtn.innerHTML;
+                    searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+                    searchBtn.disabled = true;
+                    
+                    setTimeout(() => {
+                        // Reset button
+                        searchBtn.innerHTML = originalText;
+                        searchBtn.disabled = false;
+                        
+                        // Simple search logic
+                        const searchTerms = query.toLowerCase();
+                        if (searchTerms.includes('service') || searchTerms.includes('strategy')) {
+                            window.location.href = 'index.html#services';
+                        } else if (searchTerms.includes('contact') || searchTerms.includes('help') || searchTerms.includes('support')) {
+                            window.location.href = 'index.html#contact';
+                        } else if (searchTerms.includes('about') || searchTerms.includes('company')) {
+                            window.location.href = 'index.html#about';
+                        } else if (searchTerms.includes('home') || searchTerms.includes('main')) {
+                            window.location.href = 'index.html';
+                        } else if (searchTerms.includes('solution') || searchTerms.includes('digital')) {
+                            window.location.href = 'index.html#solutions';
+                        } else {
+                            alert(`We couldn't find results for "${query}". Try searching for: services, solutions, about, or contact.`);
+                        }
+                    }, 800);
+                } else {
+                    searchInput.focus();
+                    alert('Please enter a search term.');
+                }
+            }
+            
+            if (searchBtn) {
+                searchBtn.addEventListener('click', handleErrorSearch);
+            }
+            
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleErrorSearch();
+                    }
+                });
+            }
+        }
+
+        // Optimize error background animation for mobile
+        function optimizeErrorPerformance() {
+            const background = document.getElementById('errorPageBg');
+            if (window.innerWidth <= 768 && background) {
+                const elements = background.querySelectorAll('.error-bg-element');
+                for (let i = 5; i < elements.length; i++) {
+                    elements[i].style.display = 'none';
+                }
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createErrorBackground();
+            initErrorNavigation();
+            initErrorSearch();
+            optimizeErrorPerformance();
+            
+            // Initial check for scroll animations
+            checkErrorAnimations();
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', () => {
+                checkErrorAnimations();
+                handleErrorHeaderScroll();
+            });
+            
+            // Re-optimize on resize
+            window.addEventListener('resize', optimizeErrorPerformance);
+            
+            // Initial navbar scroll check
+            handleErrorHeaderScroll();
+            
+            // Initialize menu items animation delays
+            const menuItems = document.querySelectorAll('.error-navigation li');
+            menuItems.forEach((item, index) => {
+                item.style.setProperty('--i', index);
+            });
+            
+            // Touch device improvements
+            if ('ontouchstart' in window) {
+                document.body.classList.add('touch-device');
+                
+                // Prevent zoom on double tap for buttons
+                document.querySelectorAll('.error-btn, .error-search-box button, .error-menu-toggle').forEach(button => {
+                    button.style.touchAction = 'manipulation';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
